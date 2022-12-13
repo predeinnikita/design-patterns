@@ -1,4 +1,10 @@
 <h1>Паттерны проектирования</h1>
-<button (click)="navigateTo('factory')">Фабрика</button>
-<button>Что-то еще</button>
-<router-outlet></router-outlet>
+
+<div class="main">
+    <div class="main__menu">
+        <button (click)="navigateTo('factory')">Фабрика</button>
+        <button>Что-то еще</button>
+    </div>
+    
+    <router-outlet></router-outlet>
+</div>

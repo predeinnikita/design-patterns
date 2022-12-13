@@ -1,1 +1,20 @@
-<p>factory works!</p>
+<h2>Factory</h2>
+
+<button (click)="createTransport('car')">Создать машину</button>
+<button (click)="createTransport('bicycle')">Создать велосипед</button>
+<button (click)="createTransport('bike')">Создать мотоцикл</button>
+
+<div class="transport" *ngIf="transport">
+    <div class="transport__type">
+        {{ transport.transportType }}
+    </div>
+    <div class="transport__name">
+        {{ transport.name }}
+    </div>
+    <div class="transport__description">
+        {{ transport.description }}
+    </div>
+    <div class="transport__wheels">
+        {{ transport.wheelCount }}
+    </div>
+</div>
