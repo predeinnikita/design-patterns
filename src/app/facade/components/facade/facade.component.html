@@ -1,0 +1,76 @@
+<h2>Facade</h2>
+<section>
+    Шаблон Facade (фасад) — структурный шаблон проектирования, позволяющий скрыть сложность системы путем сведения всех возможных внешних вызовов к одному объекту, делегирующему их соответствующим объектам системы.
+    <div>
+        <h3>Зачем нужен паттерн фасад?</h3>
+        <ul>
+            <li>
+                Более легкое использование библиотек, понимание и тестирование, так как facade имеет более подходящие методы для выполнения общих задач
+            </li>
+            <li>
+                Повышение читабельности библиотеки по этой же причине
+            </li>
+            <li>
+                Уменьшение зависимости внутренних библиотек от внешнего кода, поскольку большая часть кода использует facade, это позволяет разрабатывать систему более гибко
+            </li>
+        </ul>
+    </div>
+</section>
+
+<ng-container>
+    <h3>Пример без фасада</h3>
+    <select [ngModel]="currentBankAccountBadExample" (ngModelChange)="onSelectBankAccountBadExample($event)">
+        <option *ngFor="let bankAccount of bankAccountsBadExample" [value]="bankAccount.id">{{ bankAccount.id }}</option>
+    </select>
+    
+    <button (click)="onCreateNewBankAccountBadExample()">Создать новый счёт</button>
+    
+    <form [formGroup]="formGroupBadExample">
+        <input formControlName="money" placeholder="Сумма" type="number">
+        <button (click)="onPushMoneyBadExample()">Положить</button>
+        <button (click)="onPopMoneyBadExample()">Снять</button>
+    </form>
+    
+    <ng-container *ngIf="currentBankAccountBadExample; else notBankAccountBadExample">
+        <h2 *ngIf="currentBankAccountBadExample.money > 0; else notMoneyBadExample">{{ currentBankAccountBadExample.money }} руб.</h2>
+        <ng-template #notMoneyBadExample>Нет денег на счёте</ng-template>
+    </ng-container>
+    
+    <ng-template #notBankAccountBadExample>Выберите счёт</ng-template>
+
+    <ul>
+        <li *ngFor="let operation of bankHistoryBadExample.history">
+            Тип операции: {{ operation.type }} | Сумма: {{ operation.money }}
+        </li>
+    </ul>
+</ng-container>
+
+<ng-container>
+    <h3>Пример с фасадом</h3>
+    <select [ngModel]="currentBankAccount" (ngModelChange)="onSelectBankAccount($event)">
+        <option *ngFor="let bankAccount of bankAccounts" [value]="bankAccount.id">{{ bankAccount.id }}</option>
+    </select>
+    
+    <button (click)="onCreateNewBankAccount()">Создать новый счёт</button>
+    
+    <form [formGroup]="formGroup">
+        <input formControlName="money" placeholder="Сумма" type="number">
+        <button (click)="onPushMoney()">Положить</button>
+        <button (click)="onPopMoney()">Снять</button>
+    </form>
+    
+    <ng-container *ngIf="currentBankAccount; else notBankAccount">
+        <h2 *ngIf="currentBankAccount.money > 0; else notMoney">{{ currentBankAccount.money }} руб.</h2>
+        <ng-template #notMoney>Нет денег на счёте</ng-template>
+    </ng-container>
+    
+    <ng-template #notBankAccount>Выберите счёт</ng-template>
+
+    <ul>
+        <li *ngFor="let operation of history">
+            Тип операции: {{ operation.type }} | Сумма: {{ operation.money }}
+        </li>
+    </ul>
+</ng-container>
+
+

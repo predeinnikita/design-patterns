@@ -7,6 +7,9 @@ const routes: Routes = [
     children: [
       {
         path: 'factory', loadChildren: () => import('./factory/factory.module').then(m => m.FactoryModule),
+      },
+      {
+        path: 'facade', loadChildren: () => import('./facade/facade.module').then(m => m.FacadeModule),
       }
     ]
   }
