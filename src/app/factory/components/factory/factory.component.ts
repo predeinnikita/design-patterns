@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BicycleFactory } from '../../factories/bicycle.factory';
 import { BikeFactory } from '../../factories/bike.factory';
 import { CarFactory } from '../../factories/car.factory';
@@ -12,22 +13,33 @@ import { ITransport, transportType } from '../../interfaces/transport.interface'
 })
 export class FactoryComponent {
 
-  public transport: ITransport | null = null;
+  public formGroup: FormGroup = new FormGroup({
+    name: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required)
+  });
 
-  public createTransport(transportType: transportType): void {
-    const factory = this.getFactory(transportType);
-    this.transport = factory.createTransport();
+  public transports: ITransport[] = [];
+
+  public onCreateTransport(transportType: transportType): void {
+    const name = this.formGroup.controls['name'].value;
+    const description = this.formGroup.controls['description'].value;
+    const factory = this.getFactory(transportType, name, description);
+    this.transports.push(factory.createTransport());
   }
 
-  private getFactory(transportType: transportType): TransportFactory {
+  public onCleanTransports(): void {
+    this.transports = [];
+  }
+
+  private getFactory(transportType: transportType, name: string, description: string): TransportFactory {
     switch (transportType)  {
       case 'car':
-        return new CarFactory('Toyota', 'Toyota description');
+        return new CarFactory(name, description);
       case 'bicycle':
-        return new BicycleFactory('Forward', 'Forward description');
+        return new BicycleFactory(name, description);
       case 'bike':
-        return new BikeFactory('Motobike', 'Motobike description');
+        return new BikeFactory(name, description);
     }
   }
-  
+
 }
