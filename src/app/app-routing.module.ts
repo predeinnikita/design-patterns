@@ -3,7 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'factory', loadChildren: () => import('./factory/factory.module').then(m => m.FactoryModule)
+    path: '',
+    children: [
+      {
+        path: 'factory', loadChildren: () => import('./factory/factory.module').then(m => m.FactoryModule),
+      }
+    ]
   }
 ];
 

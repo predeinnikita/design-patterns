@@ -1,1 +1,42 @@
-<p>factory works!</p>
+<h2>Factory</h2>
+<section>
+    <div>
+        <h3>Зачем нужен паттерн фабрика?</h3>
+        <ul>
+            <li>
+                Возможность создавать объекты разных типов с помощью одного и того же метода. Это очень удобно, когда возникает ситуация, в которой мы не знаем, какой тип нам понадобится
+            </li>
+            <li>
+                Возможность "запаковать" дополнительный функционал в нашу Фабрику. Например, посчитаем, сколько объектов каждого типа было создано конкретной фабрикой.
+            </li>
+            <li>
+                C помощью паттерна Factory мы можем генерировать сложные объекты намного проще и с меньшим количеством ошибок.
+            </li>
+        </ul>
+    </div>
+    
+
+    <form [formGroup]="formGroup">
+        <input formControlName="name" type="text" placeholder="Название">
+        <input formControlName="description" type="text" placeholder="Описание">
+        <button [disabled]="!formGroup.valid" (click)="onCreateTransport('car')">Создать машину</button>
+        <button [disabled]="!formGroup.valid" (click)="onCreateTransport('bicycle')">Создать велосипед</button>
+        <button [disabled]="!formGroup.valid" (click)="onCreateTransport('bike')">Создать мотоцикл</button>
+        <button [disabled]="transports.length === 0" (click)="onCleanTransports()">Очистить</button>
+    </form>
+    
+    <div class="transport" *ngFor="let transport of transports">
+        <div>
+            {{ transport.transportType }}
+        </div>
+        <div>
+            {{ transport.name }}
+        </div>
+        <div>
+            {{ transport.description }}
+        </div>
+        <div>
+            {{ transport.wheelCount }}
+        </div>
+    </div>
+</section>
