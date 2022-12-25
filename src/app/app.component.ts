@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { PerfMetricaService } from './services/perf-metrica.service';
+import { YandexAnalyticsService } from './services/yandex-analynics.service';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +13,17 @@ export class AppComponent {
 
   constructor(
     private router: Router,
+    private perfKeeper: PerfMetricaService,
+    private yandesMetrica: YandexAnalyticsService,
   ) {
+    this.perfKeeper.group('group1');
+    this.perfKeeper.time('time1');
+    setTimeout(() => {
+      this.perfKeeper.endTime('time1');
+      this.perfKeeper.endGroup('group1');
+    }, 5000);
 
+    this.yandesMetrica.emitEvent('fibonacci');
   }
 
   public navigateTo(path: string): void {
