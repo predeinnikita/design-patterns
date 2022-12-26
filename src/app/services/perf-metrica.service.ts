@@ -16,22 +16,14 @@ export class PerfMetricaService {
 
   constructor(
     private yandexMetrica: YandexAnalyticsService
-  ) {
-    console.log(perfKeeperAnalyticsYandex.yandexAnalytics);
-    
+  ) {    
     this._keeper = perfKeeper.create({
       print: true,    // DevTools -> Console
       timeline: true, // DevTools -> Performance -> User timings
       prefix: '⏱',
     });
 
-    this._keeper.setAnalytics([
-      yandexAnalytics({
-        id: this.yandexMetrica.id,
-        prefix: 'my-app',
-        normalize: (names: string[]) => names
-      })
-    ]);
+    this.setYandexAnalitics();
   }
 
   public group(groupName: string): void {
@@ -48,6 +40,16 @@ export class PerfMetricaService {
 
   public endGroup(groupName: string): void {
     this._keeper.groupEnd(groupName);
+  }
+
+  private setYandexAnalitics(): void {
+    this._keeper.setAnalytics([
+      yandexAnalytics({
+        id: this.yandexMetrica.id,
+        prefix: '',
+        normalize: (names: string[]) => names
+      })
+    ]);
   }
 }
 
