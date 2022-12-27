@@ -1,11 +1,10 @@
-import { Injectable } from '@angular/core';
-import { PerfKeeper } from '../perf.types';
-import { yandexAnalytics } from '../yandex.perf';
+import { Injectable, isDevMode } from '@angular/core';
+import { PerfKeeper } from '../utills/perf.types';
+import { yandexAnalytics } from '../utills/yandex.perf';
 import { YandexAnalyticsService } from './yandex-analynics.service';
+import { system } from '@perf-tools/keeper';
 
 declare const perfKeeper: any;
-declare const perfKeeperAnalyticsYandex: any;
-declare const ym: any;
 
 @Injectable({
   providedIn: 'root'
@@ -18,12 +17,13 @@ export class PerfMetricaService {
     private yandexMetrica: YandexAnalyticsService
   ) {    
     this._keeper = perfKeeper.create({
-      print: true,    // DevTools -> Console
+      print: isDevMode(),    // DevTools -> Console
       timeline: true, // DevTools -> Performance -> User timings
       prefix: '⏱',
     });
 
     this.setYandexAnalitics();
+
   }
 
   public group(groupName: string): void {

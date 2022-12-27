@@ -1,7 +1,7 @@
 import { TmplAstBoundAttribute } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { first, interval, tap, timeout } from 'rxjs';
-import { PerfMetricaService } from 'src/app/services/perf-metrica.service';
+import { PerfMetricaService } from 'src/app/shared/services/perf-metrica.service';
 
 @Component({
   selector: 'app-test-user-end',

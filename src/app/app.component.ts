@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FacadeComponent } from './facade/components/facade/facade.component';
 import { FactoryComponent } from './factory/components/factory/factory.component';
-import { PerfMetricaService } from './services/perf-metrica.service';
-import { YandexAnalyticsService } from './services/yandex-analynics.service';
+import { PerfMetricaService } from './shared/services/perf-metrica.service';
+import { YandexAnalyticsService } from './shared/services/yandex-analynics.service';
 import { TestUserEndComponent } from './test-user-end-monitoring/test-user-end/test-user-end.component';
 
 @Component({

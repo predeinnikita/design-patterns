@@ -17,7 +17,6 @@ export function yandexAnalytics(options?: AnalyticsOptions & {id: string}, ym?: 
 	const send = (params: YandexAnalyticsParams) => {
 		if (ym) {
 			ym(id, 'params', params);
-            console.log(params);
 		} else {
 			queue.push(params);
 		}
