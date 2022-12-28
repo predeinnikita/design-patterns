@@ -13,13 +13,7 @@ export class ApiService {
 
 
     public getPosts(): Observable<any> {
-        this._perfMetrica.group('Время выполнения api-запросов');
-        this._perfMetrica.time('Получение списка туду');
         return this._http.get(`https://jsonplaceholder.typicode.com/posts`).pipe(
-            tap(() => {
-                this._perfMetrica.endGroup('Время выполнения api-запросов');
-                this._perfMetrica.endTime('Получение списка туду');
-            })
         )
     }
 }

@@ -8,7 +8,8 @@ import { AppComponent } from './app.component';
 import { FactoryModule } from './factory/factory.module';
 import { ApiService } from './shared/services/api.service';
 import { TestUserEndMonitoringModule } from './test-user-end-monitoring/test-user-end-monitoring.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LogInterceptor } from './shared/interceptors/log.interceptor';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,11 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   providers: [
     ApiService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LogInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent]
 })
