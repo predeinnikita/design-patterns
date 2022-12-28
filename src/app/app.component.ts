@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { PerfMetricaService } from './shared/services/perf-metrica.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,9 @@ export class AppComponent {
 
   constructor(
     private router: Router,
+    private _perfKeeper: PerfMetricaService
   ) {
+    this._perfKeeper.navigationTimings();
   }
 
   public navigateTo(path: string): void {

@@ -1,7 +1,9 @@
 import { Injectable, isDevMode } from '@angular/core';
-import { PerfKeeper } from '../utills/perf.types';
-import { yandexAnalytics } from '../utills/yandex.perf';
-
+import { PerfKeeper } from '../utills/perfMetrica/perf.types';
+import { yandexAnalytics } from '../utills/perfMetrica/yandex.perf';
+import { system } from '@perf-tools/keeper';
+import { navigationTimings } from '../utills/perfKeeperNavigation/perf-navigation';
+// import { navigationTimings } from '@perf-tools/keeper/ext/navigation';
 declare const perfKeeper: any;
 
 @Injectable({
@@ -37,6 +39,10 @@ export class PerfMetricaService {
 
   public endGroup(groupName: string): void {
     this._keeper.groupEnd(groupName);
+  }
+
+  public navigationTimings(): void {
+    navigationTimings(this._keeper);
   }
 
   private setYandexAnalitics(): void {
