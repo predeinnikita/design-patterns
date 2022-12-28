@@ -1,6 +1,7 @@
 import { TmplAstBoundAttribute } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { first, interval, tap, timeout } from 'rxjs';
+import { ApiService } from 'src/app/shared/services/api.service';
 import { PerfMetricaService } from 'src/app/shared/services/perf-metrica.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class TestUserEndComponent {
 
   constructor(
     private _perfKeeper: PerfMetricaService,
+    private _api: ApiService,
   ) {
   }
 
@@ -26,5 +28,11 @@ export class TestUserEndComponent {
         this._perfKeeper.endTime('Время работы метода');
       })
     ).subscribe()
+  }
+
+  public onGetPosts(): void {
+    this._api.getPosts().subscribe(x => {
+      console.log(x);
+    })
   }
 }

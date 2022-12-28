@@ -1,8 +1,6 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { PerfKeeper } from '../utills/perf.types';
 import { yandexAnalytics } from '../utills/yandex.perf';
-import { YandexAnalyticsService } from './yandex-analynics.service';
-import { system } from '@perf-tools/keeper';
 
 declare const perfKeeper: any;
 
@@ -14,7 +12,6 @@ export class PerfMetricaService {
   private _keeper: PerfKeeper;
 
   constructor(
-    private yandexMetrica: YandexAnalyticsService
   ) {    
     this._keeper = perfKeeper.create({
       print: isDevMode(),    // DevTools -> Console
@@ -45,7 +42,7 @@ export class PerfMetricaService {
   private setYandexAnalitics(): void {
     this._keeper.setAnalytics([
       yandexAnalytics({
-        id: this.yandexMetrica.id,
+        id: '91793814',
         prefix: '',
         normalize: (names: string[]) => names
       })

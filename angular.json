@@ -33,6 +33,7 @@
               "src/styles.scss"
             ],
             "scripts": [
+              "src/assets/scripts/yandex.metrica.js",
               "src/assets/scripts/perf-keeper.js",
               "src/assets/scripts/perf-keeper.extensions.js",
               "src/assets/scripts/perf-keeper.yandex.js"
