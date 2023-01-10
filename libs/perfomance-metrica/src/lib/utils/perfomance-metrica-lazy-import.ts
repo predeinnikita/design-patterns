@@ -1,6 +1,6 @@
 import { RouteConfigLoadEnd, RouteConfigLoadStart, Router } from "@angular/router";
 import { tap } from "rxjs";
-import { PerfomanceMetricaService } from "../../perfomance-metrica.service";
+import { PerfomanceMetricaService } from "../perfomance-metrica.service";
 
 export function logLazyImportsPerfomanceMetrica(router: Router, perfMetrica: PerfomanceMetricaService) {
     return () => router.events.pipe(

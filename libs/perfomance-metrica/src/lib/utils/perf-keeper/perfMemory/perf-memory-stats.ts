@@ -1,5 +1,4 @@
-import { domReady } from "@perf-tools/keeper";
-import { createTimingsGroup } from "../perfKeeperNavigation/perf-navigation-utils";
+import { createTimingsGroup, domReady } from "../perfKeeperNavigation/perf-navigation-utils";
 import { PerfKeeper } from "../perfMetrica/perf.types";
 import { BaseMemoryOptions, createInterval } from "./perf-memory-util";
 

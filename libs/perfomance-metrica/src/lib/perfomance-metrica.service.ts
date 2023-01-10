@@ -1,8 +1,8 @@
-import { Inject, Injectable, isDevMode } from '@angular/core';
-import { navigationTimings } from './utils/perfKeeperNavigation/perf-navigation';
-import { memoryStats } from './utils/perfMemory/perf-memory-stats';
-import { create, PerfKeeper } from './utils/perfMetrica/keeper';
-import { yandexAnalytics } from './utils/perfMetrica/yandex.perf';
+import { Injectable, isDevMode } from '@angular/core';
+import { navigationTimings } from './utils/perf-keeper/perfKeeperNavigation/perf-navigation';
+import { memoryStats } from './utils/perf-keeper/perfMemory/perf-memory-stats';
+import { create, PerfKeeper } from './utils/perf-keeper/perfMetrica/keeper';
+import { yandexAnalytics } from './utils/perf-keeper/perfMetrica/yandex.perf';
 
 @Injectable()
 export class PerfomanceMetricaService {
