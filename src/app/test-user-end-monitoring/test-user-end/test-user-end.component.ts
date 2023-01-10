@@ -1,5 +1,5 @@
 import { TmplAstBoundAttribute } from '@angular/compiler';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { first, interval, tap, timeout } from 'rxjs';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { PerfMetricaService } from 'src/app/shared/services/perf-metrica.service';
@@ -9,13 +9,20 @@ import { PerfMetricaService } from 'src/app/shared/services/perf-metrica.service
   templateUrl: './test-user-end.component.html',
   styleUrls: ['./test-user-end.component.scss']
 })
-export class TestUserEndComponent {
+export class TestUserEndComponent implements OnInit {
   public timeInSeconds: number = 0;
 
   constructor(
     private _perfKeeper: PerfMetricaService,
     private _api: ApiService,
   ) {
+    this._perfKeeper.group('Тестовое время рендера компонентов');
+    this._perfKeeper.time('TestUserEndComponent');
+  }
+
+  public ngOnInit(): void {
+    this._perfKeeper.endGroup('Тестовое время рендера компонентов');
+    this._perfKeeper.endTime('TestUserEndComponent');
   }
 
   public onClick(): void {

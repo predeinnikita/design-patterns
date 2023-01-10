@@ -1,13 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { defer, first, ignoreElements, last, map, Observable, startWith, tap } from "rxjs";
-import { PerfMetricaService } from "./perf-metrica.service";
+import { first, Observable } from "rxjs";
 
 @Injectable()
 export class ApiService {
     constructor(
         private _http: HttpClient,
-        private _perfMetrica: PerfMetricaService
     ) {
     }
 

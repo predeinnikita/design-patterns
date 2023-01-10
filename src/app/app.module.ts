@@ -10,10 +10,12 @@ import { ApiService } from './shared/services/api.service';
 import { TestUserEndMonitoringModule } from './test-user-end-monitoring/test-user-end-monitoring.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LogInterceptor } from './shared/interceptors/log.interceptor';
+import { PerfomanceMetricaModule } from 'perfomance-metrica.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PerfomanceMetricaModule
   ],
   imports: [
     CommonModule,

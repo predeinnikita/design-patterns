@@ -12,6 +12,7 @@ export function decorateAllChildRoutes(
                 if (child.loadChildren) {
                     child.loadChildren = importDecorateFunc(child.loadChildren, child.path || '');
                 }
+                
                 return child;
             })
 
