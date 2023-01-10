@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { PerfMetricaService } from './shared/services/perf-metrica.service';
+import { PerfomanceMetricaService } from 'perfomance-metrica';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ export class AppComponent {
 
   constructor(
     private router: Router,
-    private _perfKeeper: PerfMetricaService
+    private _perfKeeper: PerfomanceMetricaService,
   ) {
     this._perfKeeper.navigationTimings();
   }

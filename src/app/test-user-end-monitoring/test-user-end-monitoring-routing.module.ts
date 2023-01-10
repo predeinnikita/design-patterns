@@ -4,7 +4,13 @@ import { TestUserEndComponent } from './test-user-end/test-user-end.component';
 
 const routes: Routes = [
   {
-    path: '', component: TestUserEndComponent
+    path: '', component: TestUserEndComponent,
+    children: [
+      {
+        path: 'test-child',
+        loadChildren: () => import('./test-child/test-child.module').then(m => m.TestChildModule)
+      }
+    ]
   }
 ];
 
@@ -12,4 +18,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TestUserEndMonitoringRoutingModule { }
+export class TestUserEndMonitoringRoutingModule { 
+}

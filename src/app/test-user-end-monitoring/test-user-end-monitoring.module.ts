@@ -9,7 +9,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
-    TestUserEndComponent
+    TestUserEndComponent,
   ],
   imports: [
     BrowserModule,

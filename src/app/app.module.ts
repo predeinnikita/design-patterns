@@ -8,8 +8,14 @@ import { AppComponent } from './app.component';
 import { FactoryModule } from './factory/factory.module';
 import { ApiService } from './shared/services/api.service';
 import { TestUserEndMonitoringModule } from './test-user-end-monitoring/test-user-end-monitoring.module';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LogInterceptor } from './shared/interceptors/log.interceptor';
+import { HttpClientModule } from '@angular/common/http';
+import { 
+  getYandexPerfomanceMetricaProvider, 
+  LOG_HTTP_REQUESTS_TIME_PROVIDER, 
+  LOG_LAZY_IMPORT_PROVIDER, 
+  PerfomanceMetricaService
+} from 'perfomance-metrica';
+import { TestChildModule } from './test-user-end-monitoring/test-child/test-child.module';
 
 @NgModule({
   declarations: [
@@ -24,18 +30,24 @@ import { LogInterceptor } from './shared/interceptors/log.interceptor';
     AppRoutingModule,
     FactoryModule,
     TestUserEndMonitoringModule,
+    TestChildModule,
   ],
   providers: [
     ApiService,
-    {
-      provide: 'yandexMetricaId', useValue: '91793814'
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: LogInterceptor,
-      multi: true,
-    },
+    //Сервис для кастомного логирования времени
+    PerfomanceMetricaService,
+    //Подключение яндекс метрики для сбора статистики
+    getYandexPerfomanceMetricaProvider('91793814'),
+    //Логирование времени выполнения http-запросов
+    LOG_HTTP_REQUESTS_TIME_PROVIDER,
+    //Логирование времени загрузки ленивых модулей
+    LOG_LAZY_IMPORT_PROVIDER,
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(private perfomanceMetricaService: PerfomanceMetricaService) {
+    //Статистика потребляемой памяти
+    this.perfomanceMetricaService.memoryStats();
+  }
+} 

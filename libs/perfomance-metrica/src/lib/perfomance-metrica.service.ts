@@ -1,28 +1,17 @@
 import { Inject, Injectable, isDevMode } from '@angular/core';
-import { navigationTimings } from './utills/perfKeeperNavigation/perf-navigation';
-import { memoryStats } from './utills/perfMemory/perf-memory-stats';
-import { create, PerfKeeper } from './utills/perfMetrica/keeper';
-import { yandexAnalytics } from './utills/perfMetrica/yandex.perf';
+import { navigationTimings } from './utils/perfKeeperNavigation/perf-navigation';
+import { memoryStats } from './utils/perfMemory/perf-memory-stats';
+import { create, PerfKeeper } from './utils/perfMetrica/keeper';
+import { yandexAnalytics } from './utils/perfMetrica/yandex.perf';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PerfomanceMetricaService {
 
-  private _keeper: PerfKeeper;
-
-  constructor(
-    @Inject('yandexMetricaId') private yandexMetricaId: string,
-  ) {    
-    this._keeper = create({
-      print: isDevMode(),    // DevTools -> Console
-      timeline: true, // DevTools -> Performance -> User timings
-      prefix: '⏱',
-    });
-
-    this.setYandexAnalitics(this.yandexMetricaId);
-    this.memoryStats();
-  }
+  private _keeper: PerfKeeper = create({
+    print: isDevMode(),
+    timeline: true,
+    prefix: '⏱',
+  });;
 
   public group(groupName: string): void {
     this._keeper.group(groupName);
@@ -44,11 +33,11 @@ export class PerfomanceMetricaService {
     navigationTimings(this._keeper);
   }
 
-  private memoryStats(): void {
+  public memoryStats(): void {
     memoryStats(this._keeper);
   }
 
-  private setYandexAnalitics(id: string): void {
+  public setYandexAnalitics(id: string): void {
     this._keeper.setAnalytics([
       yandexAnalytics({
         id,

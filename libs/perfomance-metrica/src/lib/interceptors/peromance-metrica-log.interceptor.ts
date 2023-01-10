@@ -6,13 +6,13 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import { PerfMetricaService } from '../services/perf-metrica.service';
+import { PerfomanceMetricaService } from '../perfomance-metrica.service';
 
 @Injectable()
-export class LogInterceptor implements HttpInterceptor {
+export class PerfomanceMetricaLogInterceptor implements HttpInterceptor {
 
   constructor(
-    private _perfMetrica: PerfMetricaService,
+    private _perfMetrica: PerfomanceMetricaService,
   ) {}
 
   public intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
