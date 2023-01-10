@@ -10,12 +10,10 @@ import { ApiService } from './shared/services/api.service';
 import { TestUserEndMonitoringModule } from './test-user-end-monitoring/test-user-end-monitoring.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LogInterceptor } from './shared/interceptors/log.interceptor';
-import { PerfomanceMetricaModule } from 'perfomance-metrica.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PerfomanceMetricaModule
   ],
   imports: [
     CommonModule,
@@ -29,6 +27,9 @@ import { PerfomanceMetricaModule } from 'perfomance-metrica.module';
   ],
   providers: [
     ApiService,
+    {
+      provide: 'yandexMetricaId', useValue: '91793814'
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LogInterceptor,

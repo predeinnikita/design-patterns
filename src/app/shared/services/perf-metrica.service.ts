@@ -1,4 +1,4 @@
-import { Injectable, isDevMode } from '@angular/core';
+import { Inject, Injectable, isDevMode } from '@angular/core';
 import { PerfKeeper } from '../utills/perfMetrica/perf.types';
 import { yandexAnalytics } from '../utills/perfMetrica/yandex.perf';
 import { navigationTimings } from '../utills/perfKeeperNavigation/perf-navigation';
@@ -14,6 +14,7 @@ export class PerfMetricaService {
   private _keeper: PerfKeeper;
 
   constructor(
+    @Inject('yandexMetricaId') private yandexMetricaId: string,
   ) {    
     this._keeper = create({
       print: isDevMode(),    // DevTools -> Console
@@ -21,7 +22,7 @@ export class PerfMetricaService {
       prefix: '⏱',
     });
 
-    this.setYandexAnalitics();
+    this.setYandexAnalitics(this.yandexMetricaId);
     this.memoryStats();
   }
 
@@ -49,10 +50,10 @@ export class PerfMetricaService {
     memoryStats(this._keeper);
   }
 
-  private setYandexAnalitics(): void {
+  private setYandexAnalitics(id: string): void {
     this._keeper.setAnalytics([
       yandexAnalytics({
-        id: '91793814',
+        id,
         prefix: '',
         normalize: (names: string[]) => names
       })
