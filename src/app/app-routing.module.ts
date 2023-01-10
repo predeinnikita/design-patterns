@@ -1,6 +1,5 @@
 import { APP_INITIALIZER, Injector, NgModule } from '@angular/core';
 import { Router, RouterModule, Routes } from '@angular/router';
-import { LogGuard } from './shared/guards/log.guard';
 import { PerfMetricaService } from './shared/services/perf-metrica.service';
 import { getDecorateChildLazyImportFunction } from './shared/utills/decorate-child-lazy-import';
 import { decorateAllChildRoutes } from './shared/utills/decorate-child-routes.utills';
@@ -50,7 +49,6 @@ const getRoutesFactoryFunction = (routes: Routes) => {
       deps: [Injector, PerfMetricaService],
       multi: true,
     },
-    LogGuard
   ],
 })
 export class AppRoutingModule {
