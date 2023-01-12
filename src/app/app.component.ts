@@ -12,9 +12,7 @@ export class AppComponent {
 
   constructor(
     private router: Router,
-    private _perfKeeper: PerfomanceMetricaService,
   ) {
-    this._perfKeeper.navigationTimings();
   }
 
   public navigateTo(path: string): void {

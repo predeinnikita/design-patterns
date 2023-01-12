@@ -5,6 +5,9 @@ import { PerfomanceMetricaLogInterceptor } from "../interceptors/peromance-metri
 import { PerfomanceMetricaService } from "../perfomance-metrica.service";
 import { logLazyImportsPerfomanceMetrica } from "./perfomance-metrica-lazy-import";
 
+/**
+ * Provider для сбора статистики скорости ленивой загрузки модулей
+*/
 export const LOG_LAZY_IMPORT_PROVIDER: Provider = {
     provide: APP_INITIALIZER,
     useFactory: logLazyImportsPerfomanceMetrica,
@@ -12,12 +15,21 @@ export const LOG_LAZY_IMPORT_PROVIDER: Provider = {
     multi: true,
 };
 
+/**
+ * Provider для сбора статистики скорости выполнения http-запросов
+*/
 export const LOG_HTTP_REQUESTS_TIME_PROVIDER: Provider = {
     provide: HTTP_INTERCEPTORS,
     useClass: PerfomanceMetricaLogInterceptor,
     multi: true,
 };
 
+/**
+ * Возвращает provider, который добавляет Яндекс.Метрику в perfomanceMetricaService,
+ * чтобы данные отправлялись в Яндекс.Метрику
+ *
+ * @param {string} id - id приложения в Яндекс.Метрике
+*/
 export function getYandexPerfomanceMetricaProvider(id: string): Provider {
     return {
         provide: APP_INITIALIZER,

@@ -49,5 +49,7 @@ export class AppModule {
   constructor(private perfomanceMetricaService: PerfomanceMetricaService) {
     //Статистика потребляемой памяти
     this.perfomanceMetricaService.memoryStats();
+    //Cтастистика полного цикла от начала загрузки и до конца
+    this.perfomanceMetricaService.navigationTimings();
   }
 } 
