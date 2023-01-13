@@ -10,7 +10,10 @@ const routes: Routes = [
       },
       {
         path: 'facade', loadChildren: () => import('./facade/facade.module').then(m => m.FacadeModule),
-      }
+      },
+      {
+        path: 'strategy', loadChildren: () => import('./strategy/strategy.module').then(m => m.StrategyModule),
+      },
     ]
   }
 ];

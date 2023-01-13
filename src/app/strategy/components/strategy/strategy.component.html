@@ -1,0 +1,15 @@
+<h2>Стратегия</h2>
+<section>
+    Design patter Strategy  или шаблон проектирования Стратегия  относится к поведенческим шаблонам проектирования. Его задача - выделить схожие алгоритмы, решающие конкретную задачу. Реализация алгоритмов выносится в отдельные классы и предоставляется возможность выбирать алгоритмы во время выполнения программы.
+</section>
+
+<form [formGroup]="formGroup">
+    <h3>Сгенерировать числа фибоначчи</h3>
+    <input type="number" placeholder="Количество" formControlName="count">
+    <button (click)="onRecursiveCalculate()">Сгенерировать рекурсивно</button>
+    <button (click)="onCycleCalculate()">Сгенерировать циклом</button>
+</form>
+
+<ol>
+    <li *ngFor="let number of result">{{ number }}</li>
+</ol>
