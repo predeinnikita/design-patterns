@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { StrategyRoutingModule } from './strategy-routing.module';
 import { StrategyComponent } from './components/strategy/strategy.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FactoryRoutingModule } from '../factory/factory-routing.module';
 
 
 @NgModule({
@@ -11,7 +13,10 @@ import { StrategyComponent } from './components/strategy/strategy.component';
   ],
   imports: [
     CommonModule,
-    StrategyRoutingModule
+    StrategyRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FactoryRoutingModule,
   ]
 })
 export class StrategyModule { }

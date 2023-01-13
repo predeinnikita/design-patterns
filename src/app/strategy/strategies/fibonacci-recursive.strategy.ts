@@ -7,7 +7,7 @@ export class RecursiveFibonacciStrategy implements IFibonacciStrategy {
         this._generate(count, result);
         result.sort((a, b) => a - b);
 
-        return result;
+        return result.slice(0, result.length - 1);
     }
 
     private _generate(count: number, sequence: number[] = []): number[] {
