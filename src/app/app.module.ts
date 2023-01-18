@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FactoryModule } from './factory/factory.module';
+import { ObserverModule } from './observer/observer.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FactoryModule } from './factory/factory.module';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    FactoryModule
+    FactoryModule,
+    ObserverModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
