@@ -14,6 +14,9 @@ const routes: Routes = [
       {
         path: 'strategy', loadChildren: () => import('./strategy/strategy.module').then(m => m.StrategyModule),
       },
+      {
+        path: 'observer', loadChildren: () => import('./observer/observer.module').then(m => m.ObserverModule),
+      }
     ]
   }
 ];
