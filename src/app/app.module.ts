@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FactoryModule } from './factory/factory.module';
 import { ObserverModule } from './observer/observer.module';
+import { AdapterModule } from "./adapter/adapter.module";
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ObserverModule } from './observer/observer.module';
     ReactiveFormsModule,
     FactoryModule,
     ObserverModule,
+    AdapterModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

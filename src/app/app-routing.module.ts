@@ -16,6 +16,9 @@ const routes: Routes = [
       },
       {
         path: 'observer', loadChildren: () => import('./observer/observer.module').then(m => m.ObserverModule),
+      },
+      {
+        path: 'adapter', loadChildren: () => import('./adapter/adapter.module').then(m => m.AdapterModule),
       }
     ]
   }

@@ -1,21 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'design-patterns';
+  public title = 'design-patterns';
 
-  constructor(
-    private router: Router,
-  ) {
+  private router: Router = inject(Router);
 
-  }
-
-  public navigateTo(path: string): void {
-    this.router.navigate([path]);
+  public async navigateTo(path: string): Promise<void> {
+    await this.router.navigate([path]);
   }
 }
